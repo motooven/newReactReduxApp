@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom"
+import {addPostDialogActionCreator, updatePostTextDialogActionCreator} from "../../state";
 
 
 const Dialogs = (p) => {
@@ -13,12 +14,13 @@ const Dialogs = (p) => {
         return <div>{p.state.dialogItems.message.map((m) => <div key={m.id}>{m.message}</div>)} </div> }
 
     let addPost = () => {
-        p.dispatch({type: "ADD-POST-DIALOG"})
+        p.dispatch(addPostDialogActionCreator())
     }
 
-    let onChange = () => {
-        let text = refElement.current.value;
-        p.dispatch({type: "UPDATE-POST-TEXT-DIALOG", text})
+    let onChange = (event) => {
+        //let text = refElement.current.value;
+        let text = event.target.value
+        p.dispatch(updatePostTextDialogActionCreator(text))
     }
 
     return (
