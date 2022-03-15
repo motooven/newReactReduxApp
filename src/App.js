@@ -14,9 +14,9 @@ const App = (p) => {
             <div className='app-wrapper'>
                 <Headers/>
                 <Navbar/>
-                <Route exact path='/'  render={ ()=> <Profile state={p.state} addPost={p.addPost} updatePostText={p.updatePostText}/> } />
-                <Route path='/profile' render={ ()=> <Profile state={p.state} addPost={p.addPost} updatePostText={p.updatePostText}/> } />
-                <Route path='/dialogs' render={ ()=> <Dialogs state={p.state} addPostDialog={p.addPostDialog} updatePostTextDialog={p.updatePostTextDialog}/> } />
+                <Route exact path='/'  render={ ()=> <Profile state={p.state} dispatch={p.dispatch} /> } />
+                <Route path='/profile' render={ ()=> <Profile state={p.state} dispatch={p.dispatch} /> } />
+                <Route path='/dialogs' render={ ()=> <Dialogs state={p.state} dispatch={p.dispatch} /> } />
                 <Footer/>
             </div>
         </BrowserRouter>

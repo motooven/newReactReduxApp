@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import state, {addPost, addPostDialog, subscribable, updatePostText, updatePostTextDialog} from "./state";
+import store from "./state";
+
 
 
 export let rerenderApp = () => {
     ReactDOM.render(
         <App
-            state={state}
-            addPost={addPost}
-            updatePostText={updatePostText}
-            addPostDialog={addPostDialog}
-            updatePostTextDialog={updatePostTextDialog}
+            state={store.getState()}
+            dispatch={store.dispatch.bind(store)}
         />,
         document.getElementById('root')
     );
 }
 
-rerenderApp(state)
+rerenderApp(store.getState())
 
-subscribable(rerenderApp)
+store.subscribable(rerenderApp)

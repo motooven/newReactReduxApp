@@ -13,12 +13,12 @@ const Dialogs = (p) => {
         return <div>{p.state.dialogItems.message.map((m) => <div key={m.id}>{m.message}</div>)} </div> }
 
     let addPost = () => {
-        p.addPostDialog()
+        p.dispatch({type: "ADD-POST-DIALOG"})
     }
 
     let onChange = () => {
         let text = refElement.current.value;
-        p.updatePostTextDialog(text)
+        p.dispatch({type: "UPDATE-POST-TEXT-DIALOG", text})
     }
 
     return (

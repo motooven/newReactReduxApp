@@ -6,12 +6,12 @@ const MyPosts = (p) => {
     let ref_Element = React.createRef()
 
     let addPost = () => {
-        p.addPost()
+        p.dispatch({type: "ADD-POST-PROFILE"})
     }
 
     let onChange = () => {
         let text = ref_Element.current.value;
-        p.updatePostText(text)
+        p.dispatch({type: "UPDATE-POST-TEXT-PROFILE", text})
     }
 
 

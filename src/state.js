@@ -1,66 +1,96 @@
 
+const store = {
 
-const state = {
-    profileItems: {
-        post: [
-            {id:1, post:'пост номер 1'},
-            {id:2, post:'пост номер 2'},
-            {id:3, post:'пост номер 3'},
-        ],
-        textArea: 'Hello boy',
+    _state: {
+        profileItems: {
+            post: [
+                {id:1, post:'пост номер 1'},
+                {id:2, post:'пост номер 2'},
+                {id:3, post:'пост номер 3'},
+            ],
+            textArea: 'Hello boy',
+        },
+        dialogItems: {
+            name: [
+                {id:1, name:'Светлана'},
+                {id:2, name:'Валентин'},
+                {id:3, name:'Иваныч'},
+            ],
+            message: [
+                {id:1, message: 'Хей всем прива'},
+                {id:2, message: 'Как дела брос'},
+                {id:3, message: 'Еее я прогромерс'},
+            ],
+            textArea: 'text Dialog'
+        }},
+    _rerenderReactApp() {
+        console.log('rerenderReactApp')
     },
-    dialogItems: {
-        name: [
-            {id:1, name:'Светлана'},
-            {id:2, name:'Валентин'},
-            {id:3, name:'Иваныч'},
-        ],
-        message: [
-            {id:1, message: 'Хей всем прива'},
-            {id:2, message: 'Как дела брос'},
-            {id:3, message: 'Еее я прогромерс'},
-        ],
-        textArea: 'text Dialog'
-    }}
+
+    getState() {
+        return store._state
+    },
+    subscribable(observer) {
+        this._rerenderReactApp = observer
+    },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST-PROFILE") {
+            let newPost = {
+                id:4,
+                post: this._state.profileItems.textArea,
+            }
+            this._state.profileItems.post.push(newPost)
+            this._state.profileItems.textArea = ''
+            this._rerenderReactApp()
+        } else if (action.type === "UPDATE-POST-TEXT-PROFILE") {
+            this._state.profileItems.textArea = action.text
+            this._rerenderReactApp()
+        } else if (action.type === "ADD-POST-DIALOG") {
+            let text = {
+                id: 4,
+                name: this._state.dialogItems.textArea
+            }
+            this._state.dialogItems.name.push(text)
+            this._rerenderReactApp()
+            this._state.dialogItems.textArea = ''
+        } else if (action.type === "UPDATE-POST-TEXT-DIALOG") {
+            this._state.dialogItems.textArea = action.text
+            this._rerenderReactApp()
+        }
+    }
+}
+
+
+export default store
+window.store = store
 
 //Добовление и обновление поста во вкладке Profile
-export const addPost = () => {
-    let newPost = {
-        id:4,
-        post: state.profileItems.textArea,
-    }
-    state.profileItems.post.push(newPost)
-    state.profileItems.textArea = ''
-    rerenderReactApp()
-}
-export const updatePostText = (text) => {
-    state.profileItems.textArea = text
-    rerenderReactApp()
-}
+//     addPost() {
+//         let newPost = {
+//             id:4,
+//             post: this._state.profileItems.textArea,
+//         }
+//         this._state.profileItems.post.push(newPost)
+//         this._state.profileItems.textArea = ''
+//         this._rerenderReactApp()
+//     },
+//     updatePostText(text) {
+//         this._state.profileItems.textArea = text
+//         this._rerenderReactApp()
+//     },
 
 //Добовление и обновление поста во вкладке Dialogs
-export const addPostDialog = () => {
-    let text = {
-        id: 4,
-        name: state.dialogItems.textArea
-    }
-    state.dialogItems.name.push(text)
-    rerenderReactApp()
-    state.dialogItems.textArea = ''
-}
-export const updatePostTextDialog = (text) => {
-    state.dialogItems.textArea = text
-    rerenderReactApp()
-}
-
-let rerenderReactApp = () => {
-    console.log('rerenderReactApp')
-}
-
-export let subscribable = (observer) => {
-    rerenderReactApp = observer
-}
-
-
-export default state
-window.state = state
+//     addPostDialog() {
+//         let text = {
+//             id: 4,
+//             name: this._state.dialogItems.textArea
+//         }
+//         this._state.dialogItems.name.push(text)
+//         this._rerenderReactApp()
+//         this._state.dialogItems.textArea = ''
+//     },
+//     updatePostTextDialog(text) {
+//         this._state.dialogItems.textArea = text
+//         this._rerenderReactApp()
+//     },
