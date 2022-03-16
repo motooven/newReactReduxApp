@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from "react-router-dom"
-import {addPostDialogActionCreator, updatePostTextDialogActionCreator} from "../../state";
+import {addPostDialogActionCreator, updatePostTextDialogActionCreator} from "../../Redux/dialogReducer";
 
 
 const Dialogs = (p) => {

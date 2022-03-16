@@ -1,12 +1,6 @@
-const ADD_POST_PROFILE = "ADD-POST-PROFILE"
-const UPDATE_POST_TEXT_PROFILE = "UPDATE-POST-TEXT-PROFILE"
-const ADD_POST_DIALOG = "ADD-POST-DIALOG"
-const UPDATE_POST_TEXT_DIALOG = "UPDATE-POST-TEXT-DIALOG"
+import profileReducer from "./Redux/profileReducer";
+import dialogReducer from "./Redux/dialogReducer";
 
-export const AddPostProfileActionCreator = () => ({type: "ADD-POST-PROFILE"})
-export const updatePostTextProfileActionCreator = (text) => ({type: "UPDATE-POST-TEXT-PROFILE", text})
-export const addPostDialogActionCreator = () => ({type: "ADD-POST-DIALOG"})
-export const updatePostTextDialogActionCreator = (text) => ({type: "UPDATE-POST-TEXT-DIALOG", text})
 
 const store = {
 
@@ -42,31 +36,11 @@ const store = {
     subscribable(observer) {
         this._rerenderReactApp = observer
     },
-//dfsdfsdf
+
     dispatch(action) {
-        if (action.type === ADD_POST_PROFILE) {
-            let newPost = {
-                id:4,
-                post: this._state.profileItems.textArea,
-            }
-            this._state.profileItems.post.push(newPost)
-            this._state.profileItems.textArea = ''
-            this._rerenderReactApp()
-        } else if (action.type === UPDATE_POST_TEXT_PROFILE) {
-            this._state.profileItems.textArea = action.text
-            this._rerenderReactApp()
-        } else if (action.type === ADD_POST_DIALOG) {
-            let text = {
-                id: 4,
-                name: this._state.dialogItems.textArea
-            }
-            this._state.dialogItems.name.push(text)
-            this._rerenderReactApp()
-            this._state.dialogItems.textArea = ''
-        } else if (action.type === UPDATE_POST_TEXT_DIALOG) {
-            this._state.dialogItems.textArea = action.text
-            this._rerenderReactApp()
-        }
+        this._state.profileItems = profileReducer(this._state.profileItems, action)
+        this._state.dialogItems  = dialogReducer(this._state.dialogItems, action)
+        this._rerenderReactApp(this._state)
     }
 }
 
