@@ -42,7 +42,7 @@ const store = {
     subscribable(observer) {
         this._rerenderReactApp = observer
     },
-
+//dfsdfsdf
     dispatch(action) {
         if (action.type === ADD_POST_PROFILE) {
             let newPost = {
