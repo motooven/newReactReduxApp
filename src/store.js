@@ -2,7 +2,7 @@ import profileReducer from "./Redux/profileReducer";
 import dialogReducer from "./Redux/dialogReducer";
 
 
-const store = {
+/*const store = {
 
     _state: {
         profileItems: {
@@ -42,11 +42,11 @@ const store = {
         this._state.dialogItems  = dialogReducer(this._state.dialogItems, action)
         this._rerenderReactApp(this._state)
     }
-}
+}*/
 
 
-export default store
-window.store = store
+//export default store
+//window.store = store
 
 //Добовление и обновление поста во вкладке Profile
 //     addPost() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from "./state";
+import store from "./Redux/store";
 
 
 
@@ -17,4 +17,6 @@ export let rerenderApp = () => {
 
 rerenderApp(store.getState())
 
-store.subscribable(rerenderApp)
+store.subscribe( () => {
+    rerenderApp(store.getState())
+} )
