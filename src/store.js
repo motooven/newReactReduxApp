@@ -63,7 +63,7 @@ import dialogReducer from "./Redux/dialogReducer";
 //         this._rerenderReactApp()
 //     },
 
-//Добовление и обновление поста во вкладке Dialogs
+//Добовление и обновление поста во вкладке DialogsContainer
 //     addPostDialog() {
 //         let text = {
 //             id: 4,

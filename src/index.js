@@ -8,8 +8,9 @@ import store from "./Redux/store";
 export let rerenderApp = () => {
     ReactDOM.render(
         <App
-            state={store.getState()}
-            dispatch={store.dispatch.bind(store)}
+            store={store}
+            //state={store.getState()}
+            //dispatch={store.dispatch.bind(store)}
         />,
         document.getElementById('root')
     );

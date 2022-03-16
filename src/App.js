@@ -5,18 +5,19 @@ import Navbar from "./components/Navbar";
 import Profile from "./components/Profile/Profile";
 import Footer from "./components/Footer";
 import {BrowserRouter, Route} from "react-router-dom";
-import Dialogs from "./components/Dialogs/Dialogs";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (p) => {
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Headers/>
                 <Navbar/>
-                <Route exact path='/'  render={ ()=> <Profile state={p.state} dispatch={p.dispatch} /> } />
-                <Route path='/profile' render={ ()=> <Profile state={p.state} dispatch={p.dispatch} /> } />
-                <Route path='/dialogs' render={ ()=> <Dialogs state={p.state} dispatch={p.dispatch} /> } />
+                <Route exact path='/'  render={ ()=> <Profile store={p.store} /> } />
+                <Route path='/profile' render={ ()=> <Profile store={p.store} /> } />
+                <Route path='/dialogs' render={ ()=> <DialogsContainer store={p.store} /> } />
                 <Footer/>
             </div>
         </BrowserRouter>
