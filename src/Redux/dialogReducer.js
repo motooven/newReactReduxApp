@@ -20,18 +20,19 @@ let initialization = {
 }
 
 const dialogReducer = (state = initialization, action) => {
-
     if (action.type === ADD_POST_DIALOG) {
-        let text = {
-            id: 4,
-            name: state.textArea
+        let text = state.textArea
+        return {
+            ...state,
+            name: [...state.name, {id: 4, name: text}],
+            ...state.textArea = ''
         }
-        state.name.push(text)
-        state.textArea = ''
     } else if (action.type === UPDATE_POST_TEXT_DIALOG) {
-        state.textArea = action.text
+        return {
+            ...state,
+            textArea: action.text
+        }
     }
-
     return state
 }
 

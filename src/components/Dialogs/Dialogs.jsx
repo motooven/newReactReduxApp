@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 const Dialogs = (p) => {
 
     const DialogItem = () => {
-        return <div> {p.dialogItems.name.map((d) => <div key={d.id}><NavLink to={'/dialogs/' + d.id}>{d.name}</NavLink></div>)} </div>
+        return <div>{p.dialogItems.name.map((d) => <div key={d.id}><NavLink to={'/dialogs/' + d.id}>{d.name}</NavLink></div>)} </div>
     }
 
     const MessageItem = () => {

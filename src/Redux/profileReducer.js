@@ -15,19 +15,19 @@ let initialization = {
 }
 
 const profileReducer = (state = initialization, action) => {
-
+    let copyState = {...state, ...state.post, ...state.textArea}
     if (action.type === ADD_POST_PROFILE) {
         let newPost = {
             id: 4,
-            post: state.textArea,
+            post: copyState.textArea,
         }
-        state.post.push(newPost)
-        state.textArea = ''
+        copyState.post.push(newPost)
+        copyState.textArea = ''
     } else if (action.type === UPDATE_POST_TEXT_PROFILE) {
-        state.textArea = action.text
+        copyState.textArea = action.text
     }
 
-    return state
+    return copyState
 }
 
 export default profileReducer
